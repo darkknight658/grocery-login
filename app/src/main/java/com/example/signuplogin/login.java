@@ -1,9 +1,6 @@
 package com.example.signuplogin;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -13,11 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class login extends AppCompatActivity {
     private EditText login, loginPassword;
     private TextView LOGIN;
     private Button loginButton;
+    private InternetReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,27 +29,16 @@ public class login extends AppCompatActivity {
         loginButton = findViewById(R.id.loginbutton);
         LOGIN = findViewById(R.id.LOGINN);
 
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String email = login.getText().toString();
                 String password = loginPassword.getText().toString();
 
-
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     if (!password.isEmpty()) {
                         if (isValidCredentials(email, password)) {
-                            Toast.makeText(login.this, "Login successful", Toast.LENGTH_SHORT).show();
-                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                            fragmentTransaction.replace(R.id.contaner,new Fragment1()).commit();
-                            login.setEnabled(false);
-                            loginButton.setVisibility(View.GONE);
-                            loginPassword.setVisibility(View.GONE);
-                            LOGIN.setVisibility(View.GONE);
-                            LOGIN.setText("WELCOME ");
-                            LOGIN.setVisibility(View.VISIBLE);
+                            checkInternetConnection(); // Check internet connection
                         } else {
                             Toast.makeText(login.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
                         }
@@ -63,26 +52,28 @@ public class login extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private boolean isValidCredentials(String email, String password) {
-        if (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                && !TextUtils.isEmpty(password) && password.length() >= 6;
+    }
 
-            if (!TextUtils.isEmpty(password) && password.length() >= 6) {
-                return true;
-            } else {
+    private void checkInternetConnection() {
+        String status = checkinternet.getNetworkInfo(this);
 
-                return false;
-            }
+        if (status.equals("connected")) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.contaner, new Fragment1()).commit();
+            login.setEnabled(false);
+            loginButton.setVisibility(View.GONE);
+            loginPassword.setVisibility(View.GONE);
+            LOGIN.setVisibility(View.GONE);
+            LOGIN.setText("WELCOME ");
+            LOGIN.setVisibility(View.VISIBLE);
         } else {
-
-            return false;
+            Toast.makeText(login.this, " No Internet connection , please check network", Toast.LENGTH_SHORT).show();
         }
     }
 
-
 }
-
-
-
