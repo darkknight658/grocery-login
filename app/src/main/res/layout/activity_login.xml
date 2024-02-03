@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/one"
+    tools:context=".signup"
+    android:id="@+id/contaner">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"/>
+
+    <LinearLayout
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/custom_et"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/LOGINN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textAlignment="center"
+            android:textColor="@color/lightorange"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_et"
+            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+            android:drawablePadding="8dp"
+            android:hint="Gmail"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/loginpassword"
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_et"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="8dp"
+            android:hint="password"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Login"
+            android:id="@+id/loginbutton"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/mus"/>
+
+    </LinearLayout>
+
+</LinearLayout>
