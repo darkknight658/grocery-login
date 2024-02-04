@@ -20,6 +20,8 @@ public class Fragment1 extends Fragment {
     private Button cartButton;
     private Button ordersButton;
     private TextView resultTextView;
+    private InternetReceiver broadcastReceiver;
+
 
 
     @Override
@@ -53,6 +55,7 @@ public class Fragment1 extends Fragment {
 
             }
         });
+
 
         return rootView;
     }

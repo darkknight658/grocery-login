@@ -42,7 +42,7 @@
             android:background="@drawable/custom_et"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
             android:drawablePadding="8dp"
-            android:hint="Gmail"
+            android:hint="username"
             android:padding="8dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
